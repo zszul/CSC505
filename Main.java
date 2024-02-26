@@ -1,5 +1,7 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
@@ -48,12 +50,28 @@ public class Main {
         	sports.enqueue(username);
         }
         
+        int theatreLeft;
+        int sportsLeft;
         
+        TicketTimer t = new TicketTimer(concert, theatre, sports, concertAmount, theatreAmount, sportsAmount, ticketT);
+        if (ticketT == "concert" && t.getConcert() <= 0) {
+        	System.out.println("Queue is full");
+        }
+        if (ticketT == "theatre" && t.getTheatre() <= 0) {
+        	System.out.println("Queue is full");
+        }
+        if (ticketT == "sports" && t.getSports() <= 0) {
+        	System.out.println("Queue is full");
+        }
         
       
       }
     public static int queueLength(int min, int max) { // randomizing queue length
         return (int) (Math.random() * (max - min + 1)) + min;
     }
+   
+    
+    
+}
 
 
