@@ -50,8 +50,6 @@ public class Main {
         	sports.enqueue(username);
         }
         
-        int theatreLeft;
-        int sportsLeft;
         
         TicketTimer t = new TicketTimer(concert, theatre, sports, concertAmount, theatreAmount, sportsAmount, ticketT);
         if (ticketT == "concert" && t.getConcert() <= 0) {
