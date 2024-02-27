@@ -163,7 +163,7 @@ public class GUI implements ActionListener {
         }
     }
 
-    public void buttonSportActionPerformed(ActionEvent e) {
+        public void buttonSportActionPerformed(ActionEvent e) {
         clicks++;
         sportButtonClickedNumber++;
         if (clicks >= 1) {
@@ -202,7 +202,7 @@ public class GUI implements ActionListener {
         
         
         if (buttonSportSavedUsernameClicked >= 2){
-            JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue:");
+            JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue: " + sports.length());
             textStatingPositioninQueue.setFont(new Font("Sans Serif", Font.BOLD, 23));
             thirdPanel.setLayout(null);
             textStatingPositioninQueue.setBounds(100,290,600,90);
@@ -249,7 +249,7 @@ public class GUI implements ActionListener {
             secondPanel.add(buttonSavedUsername);
         }
 
-        JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue:");
+        JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue: " + concert.length());
         textStatingPositioninQueue.setFont(new Font("Sans Serif", Font.BOLD, 23));
         secondPanel.setLayout(null);
         textStatingPositioninQueue.setBounds(100,290,600,90);
@@ -293,7 +293,7 @@ public class GUI implements ActionListener {
             });
             fourPanel.add(buttonSavedUsername);
 
-            JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue:");
+            JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue: " + theatre.length());
             textStatingPositioninQueue.setFont(new Font("Sans Serif", Font.BOLD, 23));
             fourPanel.setLayout(null);
             textStatingPositioninQueue.setBounds(100,290,600,90);
