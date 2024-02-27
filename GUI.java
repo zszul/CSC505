@@ -7,12 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Timer;
-import java.util.Scanner;
 
-public static int getRandomInt(int min, int max) { // randomizing queue length
-    return (int) (Math.random() * (max - min + 1)) + min;
-}
 
 public class GUI implements ActionListener {
     private int clicks = 0;
@@ -28,9 +23,17 @@ public class GUI implements ActionListener {
     public static JButton savedUsername;
     public boolean sportsPanel = false;
     int sportButtonClickedNumber = 0;
-    int theaterButtonClickedNumber = 0;
+    int theatreButtonClickedNumber = 0;
     int concertButtonClickedNumber = 0;
+    int buttonSportSavedUsernameClicked = 0;
 
+    public int queueLength(int min, int max) { // randomizing queue length
+        return (int) (Math.random() * (max - min + 1)) + min;
+    }
+
+    public static int getRandomInt(int min, int max) { // randomizing queue length
+        return (int) (Math.random() * (max - min + 1)) + min;
+    }
 
     public GUI() {
         buttonIntro = new JButton("Welcome to TicketMaster! Press to Start");
@@ -76,6 +79,67 @@ public class GUI implements ActionListener {
 
         frame.pack();
         frame.setVisible(true);
+
+        String username = "a"; // change this later to a scanner input
+
+    	int longQueue = queueLength(250,350);
+    	
+    	int shortQueue = queueLength(20,40);
+    	
+    	int mediumQueue = queueLength(100,150);
+        AQueue<String> concert = new AQueue<String>(longQueue); 
+        AQueue<String> theatre = new AQueue<String>(shortQueue);
+        AQueue<String> sports = new AQueue<String>(mediumQueue);
+        
+        Ticket sportsTickets = new Ticket();
+        int sportsAmount = sportsTickets.getRandomArbitrary(80,130);
+        
+        Ticket concertTickets = new Ticket();
+        int concertAmount = concertTickets.getRandomArbitrary(220, 320);
+        
+        Ticket theatreTickets = new Ticket();
+        int theatreAmount = theatreTickets.getRandomArbitrary(10,30);
+        
+        
+        if (concertButtonClickedNumber >= 2) {
+        	for (int i = 0; i < longQueue; i++) {
+        		concert.enqueue("a");
+        	}
+        	concert.enqueue(username);
+        }
+        if (theatreButtonClickedNumber >= 2) {
+        	for (int i = 0; i < shortQueue; i++) {
+        		theatre.enqueue("a");
+        	}
+        	theatre.enqueue(username);
+        }
+        if (sportButtonClickedNumber >= 2) {
+        	for (int i  = 0; i < mediumQueue; i++) {
+        		sports.enqueue("a");
+        	}
+        	sports.enqueue(username);
+        }
+        
+        
+        TicketTimer t = new TicketTimer(concert, theatre, sports, concertAmount, theatreAmount, sportsAmount, concertButtonClickedNumber, theatreButtonClickedNumber, sportButtonClickedNumber);
+        if (t.getConcert() <= 0) {
+        	JTextField noTicketsLeft = new JTextField("Queue is FUll");
+            noTicketsLeft.setFont(new Font("Sans Serif", Font.BOLD, 20));
+            fourPanel.setLayout(null);
+            noTicketsLeft.setBounds(22,13,600,90);
+            noTicketsLeft.setBackground(new Color(245, 173, 148));
+            noTicketsLeft.setBorder(null);
+            secondPanel.add(noTicketsLeft);
+        }
+        if (theatre.frontValue() == username && t.getTheatre() <= 0) {
+        	System.out.println("Queue is full");
+        }
+        if (sports.frontValue() == username && t.getSports() <= 0) {
+        	System.out.println("Queue is full");
+        }
+        if (concert.frontValue() == username && t.getConcert() <= 0) {
+        	System.out.println("Queue is full");
+        }
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -113,7 +177,7 @@ public class GUI implements ActionListener {
             buttonTheater.setBounds(350, 225, 200, 200);
             buttonTheater.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    buttonTheaterActionPerformed(e);
+                    buttonTheatreActionPerformed(e);
                 }
             });
             firstPanel.setLayout(null);
@@ -163,24 +227,21 @@ public class GUI implements ActionListener {
                 public void actionPerformed(ActionEvent e) {
                     String savedUsername = textBoxForUsernameInput.getText();
                     System.out.println("Saved Username: " + savedUsername);
-                    sportButtonClickedNumber++; //send to the other if statement
+                    buttonSportSavedUsernameClicked++;
                 }
             });
             thirdPanel.add(buttonSavedUsername);
-
-            int mediumQueue = getRandomInt(100,150);
-            AQueue<String> sports = new AQueue<String>(mediumQueue);
-
-
         }
-
-        JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue:");
-        textStatingPositioninQueue.setFont(new Font("Sans Serif", Font.BOLD, 23));
-        thirdPanel.setLayout(null);
-        textStatingPositioninQueue.setBounds(100,290,600,90);
-        textStatingPositioninQueue.setBackground(new Color(255, 241, 166));
-        textStatingPositioninQueue.setBorder(null);
-        thirdPanel.add(textStatingPositioninQueue);
+        
+        if (buttonSportSavedUsernameClicked >= 2){
+            JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue:");
+            textStatingPositioninQueue.setFont(new Font("Sans Serif", Font.BOLD, 23));
+            thirdPanel.setLayout(null);
+            textStatingPositioninQueue.setBounds(100,290,600,90);
+            textStatingPositioninQueue.setBackground(new Color(255, 241, 166));
+            textStatingPositioninQueue.setBorder(null);
+            thirdPanel.add(textStatingPositioninQueue);
+        }
     }
 
     public void buttonConcertActionPerformed(ActionEvent e) {
@@ -214,6 +275,7 @@ public class GUI implements ActionListener {
                 public void actionPerformed(ActionEvent e) {
                     String savedUsername = textBoxForUsernameInput.getText();
                     System.out.println("Saved Username: " + savedUsername);
+                    concertButtonClickedNumber++; //send to the other if statement
                 }
             });
             secondPanel.add(buttonSavedUsername);
@@ -228,9 +290,9 @@ public class GUI implements ActionListener {
         secondPanel.add(textStatingPositioninQueue);
     }
 
-    public void buttonTheaterActionPerformed(ActionEvent e) {
+    public void buttonTheatreActionPerformed(ActionEvent e) {
         clicks++;
-        theaterButtonClickedNumber++;
+        theatreButtonClickedNumber++;
         if (clicks >= 1) {
             firstPanel.setVisible(false);
 
@@ -257,8 +319,8 @@ public class GUI implements ActionListener {
             buttonSavedUsername.setBounds(22, 150, 150, 30);
             buttonSavedUsername.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    String savedUsername = textBoxForUsernameInput.getText();
-                    System.out.println("Saved Username: " + savedUsername);
+                    String username = textBoxForUsernameInput.getText();
+                    theatreButtonClickedNumber++; //send to the other if statement
                 }
             });
             fourPanel.add(buttonSavedUsername);
@@ -274,80 +336,7 @@ public class GUI implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new GUI();
+        GUI g = new GUI();
     }
 }
-public class Tester {
-    public static void main(String[] args) {
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("what type of ticket would you like: concert, theatre or sports");
-    
-        String ticketT = myObj.nextLine();  // Read user input
-        System.out.println("ticket type is: " + ticketT);  // Output user input
-        
-        String username = "a"; // change this later to a scanner input
-
-    	int longQueue = queueLength(250,350);
-    	
-    	int shortQueue = queueLength(20,40);
-    	
-    	int mediumQueue = queueLength(100,150);
-        AQueue<String> concert = new AQueue<String>(longQueue); 
-        AQueue<String> theatre = new AQueue<String>(shortQueue);
-        AQueue<String> sports = new AQueue<String>(mediumQueue);
-        
-        Ticket sportsTickets = new Ticket();
-        int sportsAmount = Ticket.getRandomArbitrary(80,130);
-        
-        Ticket concertTickets = new Ticket();
-        int concertAmount = Ticket.getRandomArbitrary(220, 320);
-        
-        Ticket theatreTickets = new Ticket();
-        int theatreAmount = Ticket.getRandomArbitrary(10,30);
-        
-        
-        if (sportButtonClickedNumber >= 2) {
-        	for (int i = 0; i < longQueue; i++) {
-        		concert.enqueue("a");
-        	}
-        	concert.enqueue(username);
-        }
-        if (ticketT == "theatre") {
-        	for (int i = 0; i < shortQueue; i++) {
-        		theatre.enqueue("a");
-        	}
-        	theatre.enqueue(username);
-        }
-        if (ticketT == "sports") {
-        	for (int i  = 0; i < mediumQueue; i++) {
-        		sports.enqueue("a");
-        	}
-        	sports.enqueue(username);
-        }
-        
-        
-        TicketTimer t = new TicketTimer(concert, theatre, sports, concertAmount, theatreAmount, sportsAmount, ticketT);
-        if (ticketT == "concert" && t.getConcert() <= 0) {
-        	System.out.println("Queue is full");
-        }
-        if (ticketT == "theatre" && t.getTheatre() <= 0) {
-        	System.out.println("Queue is full");
-        }
-        if (ticketT == "sports" && t.getSports() <= 0) {
-        	System.out.println("Queue is full");
-        }
-        
-      
-      }
-    public static int queueLength(int min, int max) { // randomizing queue length
-        return (int) (Math.random() * (max - min + 1)) + min;
-    }
-   
-    
-    
-}
-
-
-
-    
 
