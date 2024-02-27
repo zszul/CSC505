@@ -44,6 +44,9 @@ public class GUI implements ActionListener {
     int concertButtonClickedNumber = 0;
     int buttonSportSavedUsernameClicked = 0;
     String username = "";
+    int sportsLeft = 1;
+    int concertLeft = 1;
+    int theatreLeft = 1;
 
     public int queueLength(int min, int max) { // randomizing queue length
         return (int) (Math.random() * (max - min + 1)) + min;
@@ -306,6 +309,7 @@ public class GUI implements ActionListener {
         	}
         	concert.enqueue(username);
         	TicketTimer t1 = new TicketTimer(concert, theatre, sports, concertAmount, theatreAmount, sportsAmount, concertButtonClickedNumber, theatreButtonClickedNumber, sportButtonClickedNumber);
+        	concertLeft = t1.getConcert();
         }
         if (theatreButtonClickedNumber >= 2) {
         	for (int i = 0; i < shortQueue; i++) {
@@ -313,6 +317,7 @@ public class GUI implements ActionListener {
         	}
         	theatre.enqueue(username);
         	TicketTimer t2 = new TicketTimer(concert, theatre, sports, concertAmount, theatreAmount, sportsAmount, concertButtonClickedNumber, theatreButtonClickedNumber, sportButtonClickedNumber);
+        	theatreLeft = t2.getConcert();
         }
         if (sportButtonClickedNumber >= 2) {
         	for (int i  = 0; i < mediumQueue; i++) {
@@ -320,9 +325,10 @@ public class GUI implements ActionListener {
         	}
         	sports.enqueue(username);
         	TicketTimer t3 = new TicketTimer(concert, theatre, sports, concertAmount, theatreAmount, sportsAmount, concertButtonClickedNumber, theatreButtonClickedNumber, sportButtonClickedNumber);
+        	concertLeft = t3.getConcert();
         }
         
-        if (t.getConcert() <= 0) {
+        if (concertLeft <= 0) {
         	JTextField noTicketsLeft = new JTextField("Queue is FUll");
             noTicketsLeft.setFont(new Font("Sans Serif", Font.BOLD, 20));
             fourPanel.setLayout(null);
@@ -331,13 +337,13 @@ public class GUI implements ActionListener {
             noTicketsLeft.setBorder(null);
             secondPanel.add(noTicketsLeft);
         }
-        if (theatre.frontValue() == username && t.getTheatre() <= 0) {
+        if (theatre.frontValue() == username && theatreLeft <= 0) {
         	System.out.println("Queue is full");
         }
-        if (sports.frontValue() == username && t.getSports() <= 0) {
+        if (sports.frontValue() == username && sportsLeft <= 0) {
         	System.out.println("Queue is full");
         }
-        if (concert.frontValue() == username && t.getConcert() <= 0) {
+        if (concert.frontValue() == username && concertLeft <= 0) {
         	System.out.println("Queue is full");
         }
     }
