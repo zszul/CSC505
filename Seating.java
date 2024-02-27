@@ -24,6 +24,7 @@ public class Seating {
                 seats[i][j].setBackground(Color.GREEN);
                 seats[i][j].setOpaque(true);
                 seats[i][j].setBorderPainted(false);
+                seats[i][j].setFont(seats[i][j].getFont().deriveFont(Font.BOLD)); 
                 frameObj.add(seats[i][j]);
                 seatAvailability[i][j] = true; // Initially, all seats are available
             }
