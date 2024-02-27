@@ -10,6 +10,23 @@ import java.awt.event.ActionListener;
 
 
 public class GUI implements ActionListener {
+	int longQueue = queueLength(250,350);
+	
+	int shortQueue = queueLength(20,40);
+	
+	int mediumQueue = queueLength(100,150);
+    AQueue<String> concert = new AQueue<String>(longQueue); 
+    AQueue<String> theatre = new AQueue<String>(shortQueue);
+    AQueue<String> sports = new AQueue<String>(mediumQueue);
+    
+    Ticket sportsTickets = new Ticket();
+    int sportsAmount = sportsTickets.getRandomArbitrary(80,130);
+    
+    Ticket concertTickets = new Ticket();
+    int concertAmount = concertTickets.getRandomArbitrary(220, 320);
+    
+    Ticket theatreTickets = new Ticket();
+    int theatreAmount = theatreTickets.getRandomArbitrary(10,30);
     private int clicks = 0;
     private JFrame frame = new JFrame();
     private JButton buttonIntro;
@@ -26,6 +43,7 @@ public class GUI implements ActionListener {
     int theatreButtonClickedNumber = 0;
     int concertButtonClickedNumber = 0;
     int buttonSportSavedUsernameClicked = 0;
+    String username = "";
 
     public int queueLength(int min, int max) { // randomizing queue length
         return (int) (Math.random() * (max - min + 1)) + min;
@@ -80,45 +98,9 @@ public class GUI implements ActionListener {
         frame.pack();
         frame.setVisible(true);
 
-        String username = "a"; // change this later to a scanner input
-
-    	int longQueue = queueLength(250,350);
-    	
-    	int shortQueue = queueLength(20,40);
-    	
-    	int mediumQueue = queueLength(100,150);
-        AQueue<String> concert = new AQueue<String>(longQueue); 
-        AQueue<String> theatre = new AQueue<String>(shortQueue);
-        AQueue<String> sports = new AQueue<String>(mediumQueue);
+     
         
-        Ticket sportsTickets = new Ticket();
-        int sportsAmount = sportsTickets.getRandomArbitrary(80,130);
-        
-        Ticket concertTickets = new Ticket();
-        int concertAmount = concertTickets.getRandomArbitrary(220, 320);
-        
-        Ticket theatreTickets = new Ticket();
-        int theatreAmount = theatreTickets.getRandomArbitrary(10,30);
-        
-        
-        if (concertButtonClickedNumber >= 2) {
-        	for (int i = 0; i < longQueue; i++) {
-        		concert.enqueue("a");
-        	}
-        	concert.enqueue(username);
-        }
-        if (theatreButtonClickedNumber >= 2) {
-        	for (int i = 0; i < shortQueue; i++) {
-        		theatre.enqueue("a");
-        	}
-        	theatre.enqueue(username);
-        }
-        if (sportButtonClickedNumber >= 2) {
-        	for (int i  = 0; i < mediumQueue; i++) {
-        		sports.enqueue("a");
-        	}
-        	sports.enqueue(username);
-        }
+       
         
         
         TicketTimer t = new TicketTimer(concert, theatre, sports, concertAmount, theatreAmount, sportsAmount, concertButtonClickedNumber, theatreButtonClickedNumber, sportButtonClickedNumber);
@@ -233,6 +215,7 @@ public class GUI implements ActionListener {
             thirdPanel.add(buttonSavedUsername);
         }
         
+        
         if (buttonSportSavedUsernameClicked >= 2){
             JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue:");
             textStatingPositioninQueue.setFont(new Font("Sans Serif", Font.BOLD, 23));
@@ -332,6 +315,24 @@ public class GUI implements ActionListener {
             textStatingPositioninQueue.setBackground(new Color(245, 173, 148));
             textStatingPositioninQueue.setBorder(null);
             fourPanel.add(textStatingPositioninQueue);
+        }
+        if (concertButtonClickedNumber >= 2) {
+        	for (int i = 0; i < longQueue; i++) {
+        		concert.enqueue("a");
+        	}
+        	concert.enqueue(username);
+        }
+        if (theatreButtonClickedNumber >= 2) {
+        	for (int i = 0; i < shortQueue; i++) {
+        		theatre.enqueue("a");
+        	}
+        	theatre.enqueue(username);
+        }
+        if (sportButtonClickedNumber >= 2) {
+        	for (int i  = 0; i < mediumQueue; i++) {
+        		sports.enqueue("a");
+        	}
+        	sports.enqueue(username);
         }
     }
 
