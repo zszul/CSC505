@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +39,6 @@ public class GUI implements ActionListener {
 	private JPanel thirdPanel;
 	private JPanel fourPanel;
 	public static JButton savedUsername;
-	//public boolean sportsPanel = false;
 	int sportButtonClickedNumber = 0;
 	int theatreButtonClickedNumber = 0;
 	int concertButtonClickedNumber = 0;
