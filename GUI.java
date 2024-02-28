@@ -10,6 +10,19 @@ import java.awt.event.ActionListener;
 
 
 public class GUI implements ActionListener {
+	public class GUI implements ActionListener {
+	public void updateQueuePosition() {
+	    if (thirdPanel != null) {
+	        JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue: " + sports.length());
+	        textStatingPositioninQueue.setFont(new Font("Sans Serif", Font.BOLD, 23));
+	        textStatingPositioninQueue.setBounds(100, 290, 600, 90);
+	        textStatingPositioninQueue.setBackground(new Color(255, 241, 166));
+	        textStatingPositioninQueue.setBorder(null);
+	        thirdPanel.add(textStatingPositioninQueue);
+	        thirdPanel.revalidate();
+	        thirdPanel.repaint();
+	    }
+	}
 	int longQueue = queueLength(250,350);
 	
 	int shortQueue = queueLength(20,40);
@@ -300,6 +313,7 @@ public class GUI implements ActionListener {
         	concert.enqueue(username);
         	TicketTimer t1 = new TicketTimer(concert, theatre, sports, concertAmount, theatreAmount, sportsAmount, concertButtonClickedNumber, theatreButtonClickedNumber, sportButtonClickedNumber);
         	concertLeft = t1.getConcert();
+		updateQueuePosition();
         }
         if (theatreButtonClickedNumber >= 2) {
         	for (int i = 0; i < shortQueue; i++) {
@@ -308,6 +322,7 @@ public class GUI implements ActionListener {
         	theatre.enqueue(username);
         	TicketTimer t2 = new TicketTimer(concert, theatre, sports, concertAmount, theatreAmount, sportsAmount, concertButtonClickedNumber, theatreButtonClickedNumber, sportButtonClickedNumber);
         	theatreLeft = t2.getConcert();
+		updateQueuePosition();
         }
         if (sportButtonClickedNumber >= 2) {
         	for (int i  = 0; i < mediumQueue; i++) {
@@ -316,6 +331,7 @@ public class GUI implements ActionListener {
         	sports.enqueue(username);
         	TicketTimer t3 = new TicketTimer(concert, theatre, sports, concertAmount, theatreAmount, sportsAmount, concertButtonClickedNumber, theatreButtonClickedNumber, sportButtonClickedNumber);
         	concertLeft = t3.getConcert();
+		updateQueuePosition();
         }
         
         if (concertLeft <= 0) {
