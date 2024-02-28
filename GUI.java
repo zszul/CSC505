@@ -24,10 +24,10 @@ public class GUI implements ActionListener {
 	int sportsAmount = sportsTickets.getRandomArbitrary(80,130);
 
 	Ticket concertTickets = new Ticket();
-	int concertAmount = concertTickets.getRandomArbitrary(220, 270);
+	int concertAmount = concertTickets.getRandomArbitrary(220, 320);
 
 	Ticket theatreTickets = new Ticket();
-	int theatreAmount = theatreTickets.getRandomArbitrary(10,30);
+	int theatreAmount = theatreTickets.getRandomArbitrary(20,30);
 	private int clicks = 0;
 	private JFrame frame = new JFrame();
 	private JButton buttonIntro;
@@ -209,7 +209,7 @@ public class GUI implements ActionListener {
 								if (sports.length() == 0) {
 									((Timer) e.getSource()).stop();
 									if (t1.getSports() > 0) {
-										JTextField yesTickets = new JTextField("Choose your seats!");
+										JTextField yesTickets = new JTextField("Choose your seats (max 3)");
 										fourPanel.setLayout(null);
 										yesTickets.setBounds(100, 390, 600, 90);
 										yesTickets.setBackground(new Color(245, 173, 148));
@@ -410,3 +410,4 @@ public class GUI implements ActionListener {
 		GUI g = new GUI();
 	}
 }
+
