@@ -13,7 +13,7 @@ public class GUI implements ActionListener {
 
 	int longQueue = queueLength(250,350);
 
-	int shortQueue = queueLength(20,40);
+	int shortQueue = queueLength(20,35);
 
 	int mediumQueue = queueLength(100,150);
 	AQueue<String> concert = new AQueue<String>(longQueue); 
@@ -21,13 +21,13 @@ public class GUI implements ActionListener {
 	AQueue<String> sports = new AQueue<String>(mediumQueue);
 
 	Ticket sportsTickets = new Ticket();
-	int sportsAmount = sportsTickets.getRandomArbitrary(80,130);
+	int sportsAmount = Ticket.getRandomArbitrary(80,130);
 
 	Ticket concertTickets = new Ticket();
-	int concertAmount = concertTickets.getRandomArbitrary(220, 320);
+	int concertAmount = Ticket.getRandomArbitrary(220, 320);
 
 	Ticket theatreTickets = new Ticket();
-	int theatreAmount = theatreTickets.getRandomArbitrary(20,30);
+	int theatreAmount = Ticket.getRandomArbitrary(20,30);
 	private int clicks = 0;
 	private JFrame frame = new JFrame();
 	private JButton buttonIntro;
@@ -204,26 +204,25 @@ public class GUI implements ActionListener {
 
 						Timer refreshSport = new Timer(2000, new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								System.out.println(sports.length());
 								textStatingPositioninQueue.setText("Your Position in the Queue: " + sports.length());
 								if (sports.length() == 0) {
 									((Timer) e.getSource()).stop();
 									if (t1.getSports() > 0) {
 										JTextField yesTickets = new JTextField("Choose your seats (max 3)");
-										fourPanel.setLayout(null);
+										thirdPanel.setLayout(null);
 										yesTickets.setBounds(100, 390, 600, 90);
-										yesTickets.setBackground(new Color(245, 173, 148));
+										yesTickets.setBackground(new Color(255, 241, 166));
 										yesTickets.setBorder(null);
-										fourPanel.add(yesTickets);
+										thirdPanel.add(yesTickets);
 										new Seating();
 									}
-									if (t1.getSports() < 0) {
+									if (t1.getSports() <= 0) {
 										JTextField noTickets = new JTextField("No tickets remaining!");
-										fourPanel.setLayout(null);
+										thirdPanel.setLayout(null);
 										noTickets.setBounds(100, 390, 600, 90);
-										noTickets.setBackground(new Color(245, 173, 148));
+										noTickets.setBackground(new Color(255, 241, 166));
 										noTickets.setBorder(null);
-										fourPanel.add(noTickets);
+										thirdPanel.add(noTickets);
 									}
 								}
 							}
@@ -294,20 +293,20 @@ public class GUI implements ActionListener {
 									((Timer) e.getSource()).stop();
 									if (t2.getConcert() > 0) {
 										JTextField yesTickets = new JTextField("Choose your seats!");
-										fourPanel.setLayout(null);
+										secondPanel.setLayout(null);
 										yesTickets.setBounds(100, 390, 600, 90);
 										yesTickets.setBackground(new Color(245, 173, 148));
 										yesTickets.setBorder(null);
-										fourPanel.add(yesTickets);
+										secondPanel.add(yesTickets);
 										new Seating();
 									}
-									if (t2.getConcert() < 0) {
+									if (t2.getConcert() <= 0) {
 										JTextField noTickets = new JTextField("No tickets remaining!");
-										fourPanel.setLayout(null);
+										secondPanel.setLayout(null);
 										noTickets.setBounds(100, 390, 600, 90);
 										noTickets.setBackground(new Color(245, 173, 148));
 										noTickets.setBorder(null);
-										fourPanel.add(noTickets);
+										secondPanel.add(noTickets);
 									}
 								}
 							}
@@ -375,7 +374,7 @@ public class GUI implements ActionListener {
 								if (theatre.length() == 0) {
 									((Timer) e.getSource()).stop();
 									if (t3.getTheatre() > 0) {
-										JTextField yesTickets = new JTextField("Choose your seats!");
+										JTextField yesTickets = new JTextField(username + ", choose your seats!");
 										fourPanel.setLayout(null);
 										yesTickets.setBounds(100, 390, 600, 90);
 										yesTickets.setBackground(new Color(245, 173, 148));
@@ -383,8 +382,8 @@ public class GUI implements ActionListener {
 										fourPanel.add(yesTickets);
 										new Seating();
 									}
-									if (t3.getTheatre() < 0) {
-										JTextField noTickets = new JTextField("No tickets remaining!");
+									if (t3.getTheatre() <= 0) {
+										JTextField noTickets = new JTextField(username + ", sorry, no tickets remaining!");
 										fourPanel.setLayout(null);
 										noTickets.setBounds(100, 390, 600, 90);
 										noTickets.setBackground(new Color(245, 173, 148));
