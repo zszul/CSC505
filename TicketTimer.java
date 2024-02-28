@@ -14,7 +14,8 @@ public class TicketTimer implements ActionListener {
 	int sportButtonClickedNumber;
 	int theatreButtonClickedNumber;
 	int concertButtonClickedNumber;
-	int timeElapsed;
+
+
 
 
 	public TicketTimer(AQueue<String> c, AQueue<String> th, AQueue<String> s, int concertA, int theatreA, int sportsA, int concertClicks, int theatreClicks, int sportClicks) {
@@ -28,7 +29,6 @@ public class TicketTimer implements ActionListener {
 		sportButtonClickedNumber = sportClicks;
 		concertButtonClickedNumber = concertClicks;
 		theatreButtonClickedNumber = theatreClicks;
-		timeElapsed = 0;
 
         t.start();
 	}
@@ -39,6 +39,7 @@ public class TicketTimer implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		for (int i = 0; i < random(1, 5); i++) {
+
             if (concertButtonClickedNumber >= 2) {
                 concert.dequeue();
                 concertAmount--;
@@ -46,6 +47,7 @@ public class TicketTimer implements ActionListener {
             if (theatreButtonClickedNumber >= 2) {
                 theatre.dequeue();
                 theatreAmount--;
+
             }
             if (sportButtonClickedNumber >= 2) {
                 sports.dequeue();
@@ -64,3 +66,4 @@ public class TicketTimer implements ActionListener {
 		return sportsAmount;
 	}
 }
+
