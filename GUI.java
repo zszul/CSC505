@@ -208,7 +208,7 @@ public class GUI implements ActionListener {
 								if (sports.length() == 0) {
 									((Timer) e.getSource()).stop();
 									if (t1.getSports() > 0) {
-										JTextField yesTickets = new JTextField("Choose your seats (max 3)");
+										JTextField yesTickets = new JTextField(savedUsername + " ,choose your seats (max 3)");
 										thirdPanel.setLayout(null);
 										yesTickets.setBounds(100, 390, 600, 90);
 										yesTickets.setBackground(new Color(255, 241, 166));
@@ -292,7 +292,7 @@ public class GUI implements ActionListener {
 								if (concert.length() == 0) {
 									((Timer) e.getSource()).stop();
 									if (t2.getConcert() > 0) {
-										JTextField yesTickets = new JTextField("Choose your seats!");
+										JTextField yesTickets = new JTextField(savedUsername + " ,Choose your seats(max 3)");
 										secondPanel.setLayout(null);
 										yesTickets.setBounds(100, 390, 600, 90);
 										yesTickets.setBackground(new Color(245, 173, 148));
@@ -374,7 +374,7 @@ public class GUI implements ActionListener {
 								if (theatre.length() == 0) {
 									((Timer) e.getSource()).stop();
 									if (t3.getTheatre() > 0) {
-										JTextField yesTickets = new JTextField(username + ", choose your seats!");
+										JTextField yesTickets = new JTextField(username + ", choose your seats(max 3)");
 										fourPanel.setLayout(null);
 										yesTickets.setBounds(100, 390, 600, 90);
 										yesTickets.setBackground(new Color(245, 173, 148));
