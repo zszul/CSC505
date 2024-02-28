@@ -61,7 +61,7 @@ public class Seating {
     }
     
     // main method  
-    public static void main(String argvs[]) {    
+    public static void main(String args[]) {    
         new Seating();    
     }    
 }
