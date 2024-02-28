@@ -7,6 +7,7 @@ public class Seating {
     JFrame frameObj;
     JButton[][] seats;
     boolean[][] seatAvailability; // to keep track of seat availability
+    int clicks = 0;
     
 
     // constructor  
@@ -48,6 +49,8 @@ public class Seating {
         }
         
         public void actionPerformed(ActionEvent e) {
+        	clicks++;
+    
             if (seatAvailability[row][col]) {
                 // Assign the ticket
                 seatAvailability[row][col] = false; // mark seat as unavailable
@@ -57,6 +60,9 @@ public class Seating {
             } else {
                 JOptionPane.showMessageDialog(null, "Seat " + (row*3 + col + 1) + " is already taken!");
             }
+            if (clicks == 3) {
+        		JOptionPane.showMessageDialog(null,  "Thank you for using TicketMaster!");
+        	}
         }
     }
     
