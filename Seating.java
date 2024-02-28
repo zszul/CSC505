@@ -61,8 +61,13 @@ public class Seating {
                 JOptionPane.showMessageDialog(null, "Seat " + (row*3 + col + 1) + " is already taken!");
             }
             if (clicks == 3) {
-        		JOptionPane.showMessageDialog(null,  "Thank you for using TicketMaster!");
-        	}
+                int result = JOptionPane.showConfirmDialog(null, "Thank you for using TicketMaster! Do you want to exit?",
+                        "Confirmation", JOptionPane.YES_NO_OPTION);
+        
+                if (result == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
         }
     }
     
