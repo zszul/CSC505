@@ -213,8 +213,6 @@ public class GUI implements ActionListener {
             thirdPanel.add(buttonSavedUsername);
         }
         
-        
-        if (buttonSportSavedUsernameClicked >= 2){
             JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue: " + sports.length());
             textStatingPositioninQueue.setFont(new Font("Sans Serif", Font.BOLD, 23));
             thirdPanel.setLayout(null);
@@ -222,7 +220,6 @@ public class GUI implements ActionListener {
             textStatingPositioninQueue.setBackground(new Color(255, 241, 166));
             textStatingPositioninQueue.setBorder(null);
             thirdPanel.add(textStatingPositioninQueue);
-        }
     }
 
     public void buttonConcertActionPerformed(ActionEvent e) {
