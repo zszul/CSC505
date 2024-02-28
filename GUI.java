@@ -217,7 +217,7 @@ public class GUI implements ActionListener {
 										new Seating();
 									}
 									if (t1.getSports() <= 0) {
-										JTextField noTickets = new JTextField("No tickets remaining!");
+										JTextField noTickets = new JTextField(savedUsername + ", sorry, no tickets remaining!");
 										thirdPanel.setLayout(null);
 										noTickets.setBounds(100, 390, 600, 90);
 										noTickets.setBackground(new Color(255, 241, 166));
@@ -292,7 +292,7 @@ public class GUI implements ActionListener {
 								if (concert.length() == 0) {
 									((Timer) e.getSource()).stop();
 									if (t2.getConcert() > 0) {
-										JTextField yesTickets = new JTextField(savedUsername + " ,Choose your seats(max 3)");
+										JTextField yesTickets = new JTextField(savedUsername + " , choose your seats(max 3)");
 										secondPanel.setLayout(null);
 										yesTickets.setBounds(100, 390, 600, 90);
 										yesTickets.setBackground(new Color(245, 173, 148));
@@ -301,7 +301,7 @@ public class GUI implements ActionListener {
 										new Seating();
 									}
 									if (t2.getConcert() <= 0) {
-										JTextField noTickets = new JTextField("No tickets remaining!");
+										JTextField noTickets = new JTextField(savedUsername + " , sorry, no tickets remaining!");
 										secondPanel.setLayout(null);
 										noTickets.setBounds(100, 390, 600, 90);
 										noTickets.setBackground(new Color(245, 173, 148));
@@ -409,4 +409,5 @@ public class GUI implements ActionListener {
 		GUI g = new GUI();
 	}
 }
+
 
