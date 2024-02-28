@@ -99,14 +99,7 @@ public class GUI implements ActionListener {
         }
 
         frame.pack();
-        frame.setVisible(true);
-
-     
-        
-       
-        
-        
-        
+        frame.setVisible(true);        
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -163,7 +156,7 @@ public class GUI implements ActionListener {
         }
     }
 
-        public void buttonSportActionPerformed(ActionEvent e) {
+    public void buttonSportActionPerformed(ActionEvent e) {
         clicks++;
         sportButtonClickedNumber++;
         if (clicks >= 1) {
@@ -200,8 +193,6 @@ public class GUI implements ActionListener {
             thirdPanel.add(buttonSavedUsername);
         }
         
-        
-        if (buttonSportSavedUsernameClicked >= 2){
             JTextField textStatingPositioninQueue = new JTextField("Your Position in the Queue: " + sports.length());
             textStatingPositioninQueue.setFont(new Font("Sans Serif", Font.BOLD, 23));
             thirdPanel.setLayout(null);
@@ -209,7 +200,6 @@ public class GUI implements ActionListener {
             textStatingPositioninQueue.setBackground(new Color(255, 241, 166));
             textStatingPositioninQueue.setBorder(null);
             thirdPanel.add(textStatingPositioninQueue);
-        }
     }
 
     public void buttonConcertActionPerformed(ActionEvent e) {
@@ -353,4 +343,3 @@ public class GUI implements ActionListener {
         GUI g = new GUI();
     }
 }
-
