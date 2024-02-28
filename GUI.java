@@ -112,14 +112,7 @@ public class GUI implements ActionListener {
         }
 
         frame.pack();
-        frame.setVisible(true);
-
-     
-        
-       
-        
-        
-        
+        frame.setVisible(true);  
     }
 
     public void actionPerformed(ActionEvent e) {
