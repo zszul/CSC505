@@ -409,4 +409,3 @@ public class GUI implements ActionListener {
 		GUI g = new GUI();
 	}
 }
-
