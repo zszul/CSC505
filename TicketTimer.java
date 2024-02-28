@@ -1,8 +1,8 @@
-import javax.swing.Timer;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TicketTimer implements ActionListener {
+public class TicketTimer implements ActionListener{
 
 	Timer t;
 	AQueue<String> concert;
@@ -14,6 +14,9 @@ public class TicketTimer implements ActionListener {
 	int sportButtonClickedNumber;
 	int theatreButtonClickedNumber;
 	int concertButtonClickedNumber;
+	
+
+
 
 
 
@@ -31,6 +34,7 @@ public class TicketTimer implements ActionListener {
 		theatreButtonClickedNumber = theatreClicks;
 
         t.start();
+
 	}
 
 	public static int random(int min, int max) { // randomizing queue length
@@ -41,17 +45,34 @@ public class TicketTimer implements ActionListener {
 		for (int i = 0; i < random(1, 5); i++) {
 
             if (concertButtonClickedNumber >= 2) {
-                concert.dequeue();
-                concertAmount--;
+            	if (concert.length() == 0) {
+            		t.stop();
+            	}
+            	if (concert.length()!=0) {
+            		concert.dequeue();
+                    concertAmount--;
+            	}
             }
             if (theatreButtonClickedNumber >= 2) {
-                theatre.dequeue();
-                theatreAmount--;
+            	if (theatre.length() == 0) {
+            		t.stop();
+            	}
+            	if (theatre.length()!=0) {
+            		theatre.dequeue();
+                    theatreAmount--;
+            	}
+                
 
             }
             if (sportButtonClickedNumber >= 2) {
-                sports.dequeue();
-                sportsAmount--;
+            	if (sports.length() == 0) {
+            		t.stop();
+            	}
+            	if (sports.length()!=0) {
+            		sports.dequeue();
+                    sportsAmount--;
+            	}
+                
             }
         }
 	}
@@ -65,5 +86,8 @@ public class TicketTimer implements ActionListener {
 	public int getSports() {
 		return sportsAmount;
 	}
+	
+	
+
 }
 
