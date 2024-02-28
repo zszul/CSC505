@@ -211,10 +211,21 @@ public class GUI implements ActionListener {
 								if (sports.length() == 0) {
 									((Timer) e.getSource()).stop();
 									if (t1.getSports() > 0) {
-										System.out.print("yay"); // Add Evelyn's panel here
+										JTextField yesTickets = new JTextField("Choose your seats!");
+										fourPanel.setLayout(null);
+										yesTickets.setBounds(100, 390, 600, 90);
+										yesTickets.setBackground(new Color(245, 173, 148));
+										yesTickets.setBorder(null);
+										fourPanel.add(yesTickets);
+										new Seating();
 									}
 									if (t1.getSports() < 0) {
-										System.out.print("no sorry"); // Add a new J field that there's no tickets remaining
+										JTextField noTickets = new JTextField("No tickets remaining!");
+										fourPanel.setLayout(null);
+										noTickets.setBounds(100, 390, 600, 90);
+										noTickets.setBackground(new Color(245, 173, 148));
+										noTickets.setBorder(null);
+										fourPanel.add(noTickets);
 									}
 								}
 							}
@@ -284,10 +295,21 @@ public class GUI implements ActionListener {
 								if (concert.length() == 0) {
 									((Timer) e.getSource()).stop();
 									if (t2.getConcert() > 0) {
-										System.out.print("yay"); // Add Evelyn's panel here
+										JTextField yesTickets = new JTextField("Choose your seats!");
+										fourPanel.setLayout(null);
+										yesTickets.setBounds(100, 390, 600, 90);
+										yesTickets.setBackground(new Color(245, 173, 148));
+										yesTickets.setBorder(null);
+										fourPanel.add(yesTickets);
+										new Seating();
 									}
 									if (t2.getConcert() < 0) {
-										System.out.print("no sorry"); // Add a new J field that there's no tickets remaining
+										JTextField noTickets = new JTextField("No tickets remaining!");
+										fourPanel.setLayout(null);
+										noTickets.setBounds(100, 390, 600, 90);
+										noTickets.setBackground(new Color(245, 173, 148));
+										noTickets.setBorder(null);
+										fourPanel.add(noTickets);
 									}
 								}
 							}
@@ -355,10 +377,22 @@ public class GUI implements ActionListener {
 								if (theatre.length() == 0) {
 									((Timer) e.getSource()).stop();
 									if (t3.getTheatre() > 0) {
-										System.out.print("yay"); // Add Evelyn's panel here
+										JTextField yesTickets = new JTextField("Choose your seats!");
+										fourPanel.setLayout(null);
+										yesTickets.setBounds(100, 390, 600, 90);
+										yesTickets.setBackground(new Color(245, 173, 148));
+										yesTickets.setBorder(null);
+										fourPanel.add(yesTickets);
+										new Seating();
 									}
 									if (t3.getTheatre() < 0) {
-										System.out.print("no sorry"); // Add a new J field that there's no tickets remaining
+										JTextField noTickets = new JTextField("No tickets remaining!");
+										fourPanel.setLayout(null);
+										noTickets.setBounds(100, 390, 600, 90);
+										noTickets.setBackground(new Color(245, 173, 148));
+										noTickets.setBorder(null);
+										fourPanel.add(noTickets);
+										
 									}
 								}
 							}
